@@ -185,7 +185,7 @@ chat_interface = gr.Interface(
     inputs="text",              # input type is plain text
     outputs="text",             # output will be plain text answer
     title="🛒 Grocery AI Assistant (Fully Local)",
-    description="Ask about grocery products — answers generated using FAISS + flan-t5-base!"
+    description="Ask about grocery products. Answers generated using FAISS + flan-t5-base!"
 )
 
 # Launch the interface; share=True gives you a public link

@@ -1,18 +1,18 @@
-# Grocery AI Assistant using Retrieval-Augmented Generation (RAG)
+# Grocery AI Assistant
 
-This repository contains code and resources for building a fully local AI assistant that answers natural language questions about grocery products using the Instacart Market Basket Analysis dataset. The assistant uses semantic search with FAISS and a local language model (Flan-T5) to provide relevant answers without relying on cloud APIs.
+Ask about grocery products in plain English, and get an answer. It searches by meaning, not just keywords, and every piece of it runs locally, with no cloud API anywhere.
 
----
+**Try it:** [live demo on Hugging Face Spaces](https://huggingface.co/spaces/kmsmohamedansar/ai_knowledge_assistant)
 
-## Project Overview
+## How it works
 
-* **Dataset:** Instacart Market Basket Analysis (Kaggle)
-* **Embedding model:** sentence-transformers/all-MiniLM-L6-v2
-* **Vector store:** FAISS
-* **Local LLM:** google/flan-t5-base
-* **Interface:** Gradio
+I wanted to build a retrieval pipeline from end to end without calling anyone's API. The data is a public grocery dataset. Each product becomes one short line of text, gets turned into an embedding, and goes into a FAISS index. When you ask a question, the assistant finds the four closest products and hands them to a small local language model as context. The model writes the answer, and a Gradio page wraps the whole thing.
 
-This project demonstrates a Retrieval-Augmented Generation (RAG) pipeline with local models, enabling semantic search and question answering on grocery data.
+- **Dataset:** Instacart Market Basket Analysis (Kaggle)
+- **Embeddings:** sentence-transformers/all-MiniLM-L6-v2
+- **Vector store:** FAISS
+- **Local model:** google/flan-t5-base
+- **Interface:** Gradio
 
 ---
 
@@ -22,7 +22,7 @@ This project demonstrates a Retrieval-Augmented Generation (RAG) pipeline with l
 pip install -r requirements.txt
 ```
 
-Required packages include: langchain, langchain-community, faiss-cpu, sentence-transformers, transformers, accelerate, gradio, kagglehub.
+You'll need these packages: langchain, langchain-community, faiss-cpu, sentence-transformers, transformers, accelerate, gradio, kagglehub.
 
 ---
 
@@ -90,7 +90,7 @@ chat_interface = gr.Interface(
     inputs="text",
     outputs="text",
     title="Grocery AI Assistant (Fully Local)",
-    description="Ask about grocery products — answers generated using FAISS + Flan-T5."
+    description="Ask about grocery products. Answers generated using FAISS + Flan-T5."
 )
 
 chat_interface.launch(share=True, debug=True)
@@ -98,30 +98,19 @@ chat_interface.launch(share=True, debug=True)
 
 ---
 
-## Project Structure
+## What's in the repo
 
-* `products.csv`, `aisles.csv`, `departments.csv`: Dataset files
-* `embedding.py`: Code to create embeddings and vector store
-* `qa.py`: Local question-answering logic
-* `app.py`: Gradio web interface
+* `part_2_ai_project_rag_july_11,_2025.py`: the whole pipeline in one script, following the steps above
+* `requirements.txt`: the packages to install
+
+The dataset files (`products.csv`, `aisles.csv` and `departments.csv`) come from Kaggle and are downloaded by the script, so they aren't stored here.
 
 ---
 
-## Skills Demonstrated
+## What I practised
 
 * Data loading and cleaning with Pandas
 * Semantic embeddings and vector similarity search
 * Local deployment of open-source language models
 * Building an interactive web app with Gradio
 * Retrieval-Augmented Generation (RAG) pipeline implementation
-
----
-
-## Live Demo
-
-Try the live demo hosted on Hugging Face Spaces:
-
-[https://huggingface.co/spaces/kmsmohamedansar/ai\_knowledge\_assistant](https://huggingface.co/spaces/kmsmohamedansar/ai_knowledge_assistant)
-
-
-

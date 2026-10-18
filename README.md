@@ -1,5 +1,12 @@
 # Grocery AI Assistant using Retrieval-Augmented Generation (RAG)
 
+## In plain English
+
+Ask a question about a grocery catalogue and this local assistant searches the product data before answering. It is designed to show how an AI assistant can use a known source instead of relying only on what a model remembers.
+
+**Status:** Working demonstration using a public grocery dataset and local models.
+
+
 This repository contains code and resources for building a fully local AI assistant that answers natural language questions about grocery products using the Instacart Market Basket Analysis dataset. The assistant uses semantic search with FAISS and a local language model (Flan-T5) to provide relevant answers without relying on cloud APIs.
 
 ---
